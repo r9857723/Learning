@@ -13,7 +13,7 @@ type HeroNode struct {
 }
 
 // InsertHeroNode insert heroNode to list
-func (h *HeroNode) InsertHeroNode(newHeroNode *HeroNode) {
+func InsertHeroNode(h *HeroNode, newHeroNode *HeroNode) {
 	tempNode := h
 	for {
 		if tempNode.next == nil {
@@ -26,7 +26,7 @@ func (h *HeroNode) InsertHeroNode(newHeroNode *HeroNode) {
 }
 
 // InsertHeroNodeAsc insert heroNode to list
-func (h *HeroNode) InsertHeroNodeAsc(newHeroNode *HeroNode) {
+func InsertHeroNodeAsc(h *HeroNode, newHeroNode *HeroNode) {
 	tempNode := h
 	flag := true
 	for {
@@ -53,7 +53,7 @@ func (h *HeroNode) InsertHeroNodeAsc(newHeroNode *HeroNode) {
 	}
 }
 
-func (h *HeroNode) DeleteHeroNode(id int) {
+func DeleteHeroNode(h *HeroNode, id int) {
 	tempNode := h
 
 	flag := false
@@ -77,7 +77,7 @@ func (h *HeroNode) DeleteHeroNode(id int) {
 }
 
 // ListHeroNode show all heroNode data
-func (h *HeroNode) ListHeroNode() {
+func ListHeroNode(h *HeroNode) {
 	tempNode := h
 	if tempNode.next == nil {
 		fmt.Println("HeroNode list is null")
@@ -95,7 +95,7 @@ func (h *HeroNode) ListHeroNode() {
 }
 
 // ListHeroNodeDesc show all heroNode data
-func (h *HeroNode) ListHeroNodeDesc() {
+func ListHeroNodeDesc(h *HeroNode) {
 	tempNode := h
 
 	if tempNode.next == nil {
@@ -130,23 +130,23 @@ func main() {
 		name:     "Tom",
 		nickName: "T",
 	}
-	heroHead.InsertHeroNode(hero1)
+	InsertHeroNode(heroHead, hero1)
 
 	hero2 := &HeroNode{
 		no:       2,
 		name:     "Candy",
 		nickName: "C",
 	}
-	heroHead.InsertHeroNode(hero2)
+	InsertHeroNode(heroHead, hero2)
 
 	hero3 := &HeroNode{
 		no:       3,
 		name:     "Michael",
 		nickName: "M",
 	}
-	heroHead.InsertHeroNode(hero3)
-	heroHead.ListHeroNode()
+	InsertHeroNode(heroHead, hero3)
+	ListHeroNode(heroHead)
 
 	fmt.Println()
-	heroHead.ListHeroNodeDesc()
+	ListHeroNodeDesc(heroHead)
 }
