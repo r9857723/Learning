@@ -45,6 +45,10 @@ func (h *HeroNode) InsertHeroNodeAsc(newHeroNode *HeroNode) {
 		return
 	} else {
 		newHeroNode.next = tempNode.next
+		newHeroNode.prev = tempNode
+		if tempNode.next != nil {
+			tempNode.next.prev = newHeroNode
+		}
 		tempNode.next = newHeroNode
 	}
 }
@@ -67,7 +71,9 @@ func (h *HeroNode) DeleteHeroNode(id int) {
 		return
 	}
 	tempNode.next = tempNode.next.next
-
+	if tempNode.next != nil {
+		tempNode.next.prev = tempNode
+	}
 }
 
 // ListHeroNode show all heroNode data
