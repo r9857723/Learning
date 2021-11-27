@@ -5,14 +5,14 @@ import "fmt"
 func main() {
 	a := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 34, 19, 100, 80}
 
-	rtn := sorting(a)
-	fmt.Println(rtn)
-	rtn2 := sorting2(a)
-	fmt.Println(rtn2)
+	sorting(a)
+	fmt.Println(a)
+	sorting2(a)
+	fmt.Println(a)
 }
 
 
-func sorting(arr []int) []int {
+func sorting(arr []int) {
 	for i := 0; i < len(arr) - 1; i++ {
 		max := arr[i]
 		maxIndex := i
@@ -26,11 +26,10 @@ func sorting(arr []int) []int {
 			arr[maxIndex], arr[i] = arr[i], arr[maxIndex]
 		}
 	}
-	return arr
 }
 
 
-func sorting2(arr []int) []int {
+func sorting2(arr []int) {
 	for i := 0; i < len(arr) - 1; i++ {
 		min := arr[i]
 		minIndex := i
@@ -44,5 +43,4 @@ func sorting2(arr []int) []int {
 			arr[minIndex], arr[i] = arr[i], arr[minIndex]
 		}
 	}
-	return arr
 }
