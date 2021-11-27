@@ -12,7 +12,7 @@ only + - * /
 type Stack struct {
 	MaxTop int
 	Top int
-	array []int
+	array [5]int
 }
 
 func (s *Stack) Push(val int) (err error) {
@@ -20,7 +20,7 @@ func (s *Stack) Push(val int) (err error) {
 		return errors.New("stack full")
 	}
 	s.Top++
-	s.array = append(s.array, val)
+	s.array[s.Top] = val
 	fmt.Println("Push success")
 	return
 }
@@ -50,43 +50,10 @@ func main() {
 		MaxTop: 5,
 		Top: -1,
 	}
-	err := stack.Push(1)
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = stack.Push(5)
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = stack.Push(2)
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = stack.Push(3)
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = stack.Push(4)
-	if err != nil {
-		fmt.Println(err)
-	}
-	err = stack.Push(5)
-	if err != nil {
-		fmt.Println(err)
-	}
-	stack.ShowStack()
-
-	val, err := stack.Pop()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(val)
-	val, err = stack.Pop()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(val)
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+	stack.Pop()
+	stack.Push(4)
 	stack.ShowStack()
 }
