@@ -11,7 +11,7 @@ func main() {
 	fmt.Println(a)
 }
 
-
+// 由大到小
 func sorting(arr []int) {
 	for i := 0; i < len(arr) - 1; i++ {
 		max := arr[i]
@@ -28,7 +28,7 @@ func sorting(arr []int) {
 	}
 }
 
-
+// 由小到大
 func sorting2(arr []int) {
 	for i := 0; i < len(arr) - 1; i++ {
 		min := arr[i]
