@@ -12,42 +12,55 @@ func main() {
 		MaxTop: 20,
 		Top: -1	,
 	}
-	operStack := &stack.Stack{
+	operaStack := &stack.Stack{
 		MaxTop: 20,
 		Top: -1	,
 	}
 
-	exp := "3+2*6-2"
+	exp := "30+30*6-4-6"
 	index := 0
 	num1 := 0
 	num2 := 0
-	oper := 0
+	opera := 0
 	result := 0
+	keepNum := ""
 	for {
 		str := exp[index:index+1]
 		strAscii := int([]byte(str)[0])
 		fmt.Println(str, strAscii)
-		if operStack.IsOperation(strAscii) {
+		if operaStack.IsOperation(strAscii) {
 			// operaStack is empty
-			if operStack.Top == -1 {
-				operStack.Push(strAscii)
+			if operaStack.Top == -1 {
+				operaStack.Push(strAscii)
 			} else {
-				resPrev, _ := operStack.Priority(operStack.Array[operStack.Top])
-				resNow, _ := operStack.Priority(strAscii)
+				resPrev, _ := operaStack.Priority(operaStack.Array[operaStack.Top])
+				resNow, _ := operaStack.Priority(strAscii)
 				if resPrev >= resNow {
 					num1, _ = numStack.Pop()
 					num2, _ = numStack.Pop()
-					oper, _ = operStack.Pop()
+					opera, _ = operaStack.Pop()
 
-					result, _ = operStack.Cal(num1, num2, oper)
+					result, _ = operaStack.Cal(num1, num2, opera)
 
 					numStack.Push(result)
 				}
-				operStack.Push(strAscii)
+				operaStack.Push(strAscii)
 			}
 		} else {
-			val, _ := strconv.ParseInt(str, 10, 64)
-			numStack.Push(int(val))
+
+			keepNum += str
+			if index == len(exp) - 1 {
+				val, _ := strconv.ParseInt(keepNum, 10, 64)
+				numStack.Push(int(val))
+			} else {
+				if operaStack.IsOperation(int([]byte(exp[index+1:index+2])[0])) {
+					val, _ := strconv.ParseInt(keepNum, 10, 64)
+					numStack.Push(int(val))
+					keepNum = ""
+				}
+			}
+			//val, _ := strconv.ParseInt(str, 10, 64)
+			//numStack.Push(int(val))
 		}
 		index ++
 		if index > len(exp) - 1 {
@@ -55,15 +68,17 @@ func main() {
 		}
 	}
 
+	fmt.Println(numStack)
+	fmt.Println(operaStack)
 	for {
-		if operStack.Top == -1 {
+		if operaStack.Top == -1 {
 			break
 		}
 		num1, _ = numStack.Pop()
 		num2, _ = numStack.Pop()
-		oper, _ = operStack.Pop()
+		opera, _ = operaStack.Pop()
 
-		result, _ = operStack.Cal(num1, num2, oper)
+		result, _ = operaStack.Cal(num1, num2, opera)
 		numStack.Push(result)
 	}
 

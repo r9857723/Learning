@@ -58,11 +58,11 @@ func (s *Stack) Cal(n1, n2 int, operation int) (result int, err error) {
 		case 43:
 			result = n2 + n1
 		case 45:
-			result = n2 + n1
+			result = n2 - n1
 		case 42:
-			result = n2 + n1
+			result = n2 * n1
 		case 47:
-			result = n2 + n1
+			result = n2 / n1
 		default:
 			err = errors.New("operation err")
 	}
